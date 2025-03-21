@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Logs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    #logs {
+      height: 400px;
+      overflow-y: scroll;
+      border: 2px solid #ccc;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      margin: 20px auto;
+      width: 80%;
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+
+    #icon {
+      display: block;
+      margin: 0 auto;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <img id="icon" src="icon.png" alt="Server Icon">
+  <h1>Server Logs Viewer</h1>
+  <div id="logs"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const logsDiv = document.getElementById('logs');
+
+    socket.on('log', (logEntry) => {
+      const logItem = document.createElement('div');
+      logItem.textContent = logEntry;
+      logsDiv.appendChild(logItem);
+      logsDiv.scrollTop = logsDiv.scrollHeight; // Auto-scroll to latest log
+    });
+  </script>
+</body>
+</html>
