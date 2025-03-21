@@ -1,1 +1,13 @@
-
+{
+  "name": "brawl-server",
+  "version": "1.0.0",
+  "description": "Server mimicking a game backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "socket.io": "^4.5.4"
+  }
+}
